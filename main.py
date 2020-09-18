@@ -14,7 +14,44 @@ import datetime
 import subprocess
 
 
-basedir = '/home/jskrable/journal'
-dt = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+
+# dt = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
 
 
+def get_working_directory():
+	if os.name == 'posix':
+		cwd = '/home/{}/journal/'.format(getpass.getuser())
+	else:
+		cwd = 'C:/users/{}/journal/'.format(getpass.getuser())
+
+	if not os.path.exists(cwd):
+		os.mkdir(cwd)
+
+	return cwd
+
+
+def inline_input():
+	print('Talk, brother...\n')
+	return input('\n')
+
+# def open_editor():
+
+
+def prompt_user():
+	entry = {
+			'date': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),
+			'contents': inline_input()
+			}
+	return entry
+
+
+def write_file(outfile, entry):
+	with open(outfile, 'w+') as f:
+		f.write(entry['date']+'\n\n')
+		f.write(entry['contents']+'\n\n')
+
+
+# MAIN
+#############################################
+dt = datetime.datetime.now().strftime('%Y%m%d%H%M')
+write_file(get_working_directory()+'{}.txt'.format(dt), prompt_user())
