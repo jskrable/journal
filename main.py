@@ -34,7 +34,16 @@ def inline_input():
 	print('Talk, brother...\n')
 	return input('\n')
 
-# def open_editor():
+def get_entry(outfile):
+	EDITOR = os.environ.get('EDITOR','vim') #that easy!
+	initial_message = datetime.datetime.now().strftime('%Y-%m-%d %H:%M') # if you want to set up the file somehow
+	print('Talk, brother...\n')
+	with open(outfile, 'w+') as f:
+		f.write(initial_message)
+		f.write('\n\n')
+		f.flush()
+		# f.seek(0,2)
+		subprocess.call([EDITOR, f.name])
 
 
 def prompt_user():
@@ -45,8 +54,9 @@ def prompt_user():
 	return entry
 
 
-def write_file(outfile, entry):
+def write_file(outfile,entry):
 	with open(outfile, 'w+') as f:
+
 		f.write(entry['date']+'\n\n')
 		f.write(entry['contents']+'\n\n')
 
@@ -54,4 +64,9 @@ def write_file(outfile, entry):
 # MAIN
 #############################################
 dt = datetime.datetime.now().strftime('%Y%m%d%H%M')
-write_file(get_working_directory()+'{}.txt'.format(dt), prompt_user())
+
+# use vim
+get_entry(get_working_directory()+'{}.txt'.format(dt))
+
+# use input
+# write_file(get_working_directory()+'{}.txt'.format(dt),prompt_user())
