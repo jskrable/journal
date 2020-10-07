@@ -39,8 +39,8 @@ def get_entry(outfile):
 	initial_message = datetime.datetime.now().strftime('%Y-%m-%d %H:%M') # if you want to set up the file somehow
 	print('Talk, brother...\n')
 	with open(outfile, 'w+') as f:
-		f.write(initial_message)
-		f.write('\n\n')
+		# f.write(initial_message)
+		# f.write('\n\n')
 		f.flush()
 		# f.seek(0,2)
 		subprocess.call([EDITOR, f.name])
@@ -69,4 +69,4 @@ dt = datetime.datetime.now().strftime('%Y%m%d%H%M')
 get_entry(get_working_directory()+'{}.txt'.format(dt))
 
 # use input
-# write_file(get_working_directory()+'{}.txt'.format(dt),prompt_user())
+# write_file(get_working_directory()+'{}.txt'.format(dt),prompt_user()
