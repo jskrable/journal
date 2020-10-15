@@ -40,8 +40,8 @@ def prep_entry(raw):
 	characters, and returns a list of individual words.
 	"""
 	# extra processing to remove non-standard characters and punctuation. necessary?
-	# words = [re.sub(r'[\W_]+', '', w).lower() for w in nltk.tokenize.word_tokenize(raw)]
-	words = nltk.tokenize.word_tokenize(raw)
+	words = [re.sub(r'[\W_]+', '', w).lower() for w in nltk.tokenize.word_tokenize(raw)]
+	# words = nltk.tokenize.word_tokenize(raw)
 	return words
 
 
@@ -110,5 +110,7 @@ consider punctuation?
 ord("character") returns unicode char number
 
 char(number) returns unicod char for number
+
+try bigrams, trigrams
 """
 
