@@ -61,6 +61,16 @@ def write_file(outfile,entry):
 		f.write(entry['contents']+'\n\n')
 
 
+def resolution_progress(goal):
+	year = datetime.datetime.now().strftime('%Y')
+	all_entries = [f for r,d,f in os.walk(get_working_directory())][0]
+	count = len([e for e in all_entries if e[:4] == year])
+	progress = round((count / goal) * 100)
+	print('\nYou are {}% of the way to your goal for {}'.format(progress, year))
+
+
+
+
 # MAIN
 #############################################
 dt = datetime.datetime.now().strftime('%Y%m%d%H%M')
@@ -70,3 +80,6 @@ get_entry(get_working_directory()+'{}.txt'.format(dt))
 
 # use input
 # write_file(get_working_directory()+'{}.txt'.format(dt),prompt_user()
+
+# count progress
+resolution_progress(300)
