@@ -100,6 +100,7 @@ def master():
 	"""
 	data = gather_entries(get_files())
 	corpus = create_corpus(data)
+	create_dictionary(corpus)
 
 
 """
